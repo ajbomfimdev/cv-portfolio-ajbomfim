@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex de Jesus Bom Fim - FlutterFlow Mobile & Web Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+
+        .contact-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #dee2e6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category i {
+            color: #3498db;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.8em;
+        }
+
+        .experience-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3498db, #e74c3c);
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .company {
+            font-size: 1.1em;
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .duration {
+            background: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .education-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+        }
+
+        .education-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .education-institution {
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .differentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .differential-item {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .differential-item:hover {
+            transform: scale(1.05);
+        }
+
+        .differential-item i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .certifications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .certification {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3498db, #e74c3c);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .portfolio-header h3 {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .portfolio-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .portfolio-description h4 {
+            color: #2c3e50;
+            margin: 20px 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 15px 0;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+            font-size: 0.95em;
+        }
+
+        .screenshots-grid {
+            margin-top: 30px;
+        }
+
+        .screenshot-category {
+            margin-bottom: 40px;
+        }
+
+        .screenshot-category h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .screenshot-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .screenshot-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .screenshot {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.02);
+        }
+
+        .screenshot-caption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                align-items: start;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-header {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .portfolio-tags {
+                width: 100%;
+                justify-content: start;
+            }
+
+            .screenshot-row {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshot {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">Alex de Jesus Bom Fim</h1>
+                <p class="title">FlutterFlow.io Mobile & Web Developer | Bubble.io Specialist</p>
+                <p style="opacity: 0.8; margin-bottom: 10px;">Santo André, São Paulo, Brazil</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-code"></i>
+                        <span>+55 11 95407-3401</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>alexdejesusbomfim@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Profile</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-user"></i> Professional Summary</h2>
+                <div class="summary">
+                    Developer specialized in <span class="highlight">FlutterFlow.io</span> for mobile and web applications, and <span class="highlight">Bubble.io</span> with solid experience in systems analysis and application development. Expertise in no-code/low-code platforms, backend solutions (Supabase/Firebase), and AI automations integrated via n8n. Over 13 years of IT experience focused on innovative and efficient solutions.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4><i class="fas fa-rocket"></i> No-Code/Low-Code Development</h4>
+                        <ul class="skill-list">
+                            <li><strong>FlutterFlow.io</strong> - Native mobile & responsive web app development</li>
+                            <li><strong>Bubble.io</strong> - Complete web application creation</li>
+                            <li><strong>Supabase & Firebase</strong> - Backend integration and management</li>
+                            <li><strong>AI Automations</strong> - LLMs implementation with n8n</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-code"></i> Traditional Development</h4>
+                        <ul class="skill-list">
+                            <li><strong>C# .NET & VB.NET</strong> - Application development and maintenance</li>
+                            <li><strong>Databases</strong> - Oracle, SQL Server, MySQL, PL/SQL</li>
+                            <li><strong>Technical Support</strong> - N2/N3, critical incident management</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 30px; color: #2c3e50;"><i class="fas fa-certificate"></i> Certifications</h4>
+                <div class="certifications">
+                    <span class="certification">ITIL® Foundation 2011</span>
+                    <span class="certification">Oracle® Database 11g: Fundamentals I</span>
+                    <span class="certification">Microsoft Certified: Azure Fundamentals</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">.NET Development Analyst</div>
+                            <div class="company">Stefanini Brasil</div>
+                        </div>
+                        <div class="duration">Oct 2021 - Mar 2025</div>
+                    </div>
+                    <div class="job-description">
+                        Developed and maintained .NET applications for ZF Automotive Brasil. Implemented global C# .NET project for industrial production management. Operated across plants in South/North America, Europe, and Asia.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Development Analyst</div>
+                            <div class="company">Stefanini Brasil</div>
+                        </div>
+                        <div class="duration">Aug 2020 - Apr 2022</div>
+                    </div>
+                    <div class="job-description">
+                        N2/N3 support for Zurich client with focus on SLA and satisfaction. Development of front-end solutions and Stored Procedures maintenance. Accounting closing processes and analytical reporting.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">SDM (Service Delivery Manager)</div>
+                            <div class="company">Stefanini Brasil</div>
+                        </div>
+                        <div class="duration">May 2017 - Apr 2022</div>
+                    </div>
+                    <div class="job-description">
+                        Management of critical crises and incidents for Carrefour Brasil. Coordination between infrastructure, development, and support teams. Ensuring SLA compliance and contractual KPIs.
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div class="education-item">
+                    <div class="education-title">Computer Science</div>
+                    <div class="education-institution">Anhanguera-Unia | 2010-2014</div>
+                </div>
+                
+                <h4 style="margin-top: 20px; color: #2c3e50;">Complementary Courses:</h4>
+                <div class="education-item">
+                    <div class="education-title">Oracle Database 11g & PL/SQL</div>
+                    <div class="education-institution">Ka Solution</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-title">MySQL Developer Expert</div>
+                    <div class="education-institution">Udemy Academy</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-star"></i> Key Differentials</h2>
+                <div class="differentials">
+                    <div class="differential-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div><strong>FlutterFlow.io Specialization</strong><br>Mobile & web app development</div>
+                    </div>
+                    <div class="differential-item">
+                        <i class="fas fa-globe"></i>
+                        <div><strong>Bubble.io Experience</strong><br>MVP and robust web app creation</div>
+                    </div>
+                    <div class="differential-item">
+                        <i class="fas fa-server"></i>
+                        <div><strong>Backend Integration</strong><br>Supabase and Firebase for complete solutions</div>
+                    </div>
+                    <div class="differential-item">
+                        <i class="fas fa-robot"></i>
+                        <div><strong>Intelligent Automation</strong><br>AI/LLMs with n8n for process optimization</div>
+                    </div>
+                    <div class="differential-item">
+                        <i class="fas fa-eye"></i>
+                        <div><strong>Hybrid Vision</strong><br>Combines traditional development with modern no-code</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-laptop-code"></i> Portfolio</h2>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-header">
+                            <h3>EAD Learning Platform</h3>
+                            <div class="portfolio-tags">
+                                <span class="tag">FlutterFlow.io</span>
+                                <span class="tag">Web + Mobile</span>
+                                <span class="tag">Firebase</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-description">
+                            <p><strong>Complete online learning platform</strong> featuring both administrative and student interfaces. Built as a responsive web application with mobile app deployment capabilities for App Store and Google Play.</p>
+                            
+                            <h4>Key Features:</h4>
+                            <ul class="feature-list">
+                                <li><strong>Admin Panel:</strong> Course creation, module management, student enrollment, analytics dashboard</li>
+                                <li><strong>Student Interface:</strong> Course catalog, video lessons, progress tracking, community interaction</li>
+                                <li><strong>Community Features:</strong> Discussion forums, Q&A sections, news updates from administrators</li>
+                                <li><strong>Content Management:</strong> Video integration, supplementary materials, class scheduling</li>
+                                <li><strong>User Management:</strong> Student enrollment, group management, progress monitoring</li>
+                            </ul>
+                            
+                            <div class="tech-stack">
+                                <strong>Technology Stack:</strong> FlutterFlow.io • Firebase Backend • Responsive Design • Cross-Platform Deployment
+                            </div>
+
+                            <div class="screenshots-grid">
+                                <div class="screenshot-category">
+                                    <h3><i class="fas fa-desktop"></i> Web Application Screenshots</h3>
+                                    <div class="screenshot-row">
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/uuplxr8fyeas/screencapture-voacaio-flutterflow-app-cursosAdmin-2025-06-02-00_05_26.png')"></div>
+                                            <div class="screenshot-caption">Admin - Course Management</div>
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/nd3pci6qw4c0/screencapture-voacaio-flutterflow-app-turmasAdmin-2025-06-02-00_05_44.png')"></div>
+                                            <div class="screenshot-caption">Admin - Groups Management</div>
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/9o9qnwkayjvp/screencapture-voacaio-flutterflow-app-clientesAdmin-2025-06-02-00_06_05.png')"></div>
+                                            <div class="screenshot-caption">Admin - Student Management</div>
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/odt6zsirw5bg/screencapture-voacaio-flutterflow-app-comunidade-2025-06-02-00_06_42.png')"></div>
+                                            <div class="screenshot-caption">Community Interface</div>
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/cithk5c4iput/screencapture-voacaio-flutterflow-app-listarModulos-2025-06-02-00_07_51.png')"></div>
+                                            <div class="screenshot-caption">Module Listing</div>
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/z5ky26abxy48/screencapture-voacaio-flutterflow-app-verAula-2025-06-02-00_08_27.png')"></div>
+                                            <div class="screenshot-caption">Class Viewer</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-category">
+                                    <h3><i class="fas fa-mobile-alt"></i> Mobile Application Screenshots</h3>
+                                    <div class="screenshot-row">
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/8g3km0dlegfx/screencapture-voacaio-flutterflow-app-cursosAdmin-2025-06-02-00_09_04.png')"></div>
+                                            <div class="screenshot-caption">Mobile Admin - Courses</div>
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <div class="screenshot" style="background-image: url('https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/projeto23-caio-tonon-hdz9w5/assets/99v1o1j7pyjx/screencapture-voacaio-flutterflow-app-comunidade-2025-06-02-00_09_55.png')"></div>
+                                            <div class="screenshot-caption">Mobile Community</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
